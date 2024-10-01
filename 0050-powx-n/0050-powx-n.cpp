@@ -18,7 +18,7 @@ public:
             }
             // Square the base and shift the exponent to the right
             x *= x;
-            num >>= 1;
+            num >>= 4;
         }
         
         return result;
