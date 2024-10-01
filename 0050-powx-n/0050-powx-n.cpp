@@ -1,26 +1,28 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
-        // Handle negative exponent by inverting the base
-        if (n < 0) {
-            x = 1 / x;
+    double myPow(double base, int exponent) {
+        // If the exponent is negative, invert the base and make the exponent positive
+        if (exponent < 0) {
+            base = 1 / base;
         }
 
-        // Use long for the absolute value of n to avoid overflow issues
-        long num = labs(n);
+        // Use long to handle potential overflow for the absolute value of the exponent
+        long absExponent = labs(exponent);
 
         double result = 1.0;
         
-        // Bitwise exponentiation by squaring for optimal performance
-        while (num > 0) {
-            if (num & 1) { // Check if the current bit is set (odd exponent)
-                result *= x;
+        // Exponentiation by squaring for optimal performance
+        while (absExponent > 0) {
+            // If the current bit of the exponent is set (odd exponent), multiply the result by the base
+            if (absExponent & 1) {
+                result *= base;
             }
-            // Square the base and shift the exponent to the right
-            x *= x;
-            num >>= 4;
+            // Square the base for the next bit and right-shift the exponent
+            base *= base;
+            absExponent >>= 1; // Fixed the shift to 1 (not 4) for correct binary shifting
         }
         
         return result;
     }
 };
+
