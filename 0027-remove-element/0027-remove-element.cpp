@@ -1,8 +1,8 @@
 class Solution {
 public:
-    int removeElement(vector<int>& nums, int val) {
-        auto it = remove(nums.begin(), nums.end(), val);
-        nums.erase(it, nums.end());
-        return nums.size();
+    int removeElement(vector<int>& num, int val) {
+        auto it = remove(num.begin(), num.end(), val);
+        num.erase(it, nums.end());
+        return num.size();
     }
 };
